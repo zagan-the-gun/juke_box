@@ -1,25 +1,25 @@
 # 特徴
-管理画面が標準装備、しかも自動生成
- モデルを作成すると自動的に管理画面に追加される
- CSVのインポート/エクスポート機能や検索入力でオートコンプリートなどのユーザカスタムも自由度が高い
-ユーザ認証機能が標準装備なのでセキュリティが高い
- ユーザカスタムも可能、OAuth2のカスタムを入れてgoogle辺りと連携とかも簡単
- グループの概念も標準で装備してるので運用が楽
- URL単位でアクセス制御もできるし、管理画面ではモデル単位で参照/追加/変更/削除の制御も可能
-Ptythonの超豊富なライブラリを利用できる
- みんなで巨人の肩に乗ろう！他の言語にあってPythonに無いライブラリとか存在しないと思うよ
- AIって言えばPythonだよね！ってところもあるし、この辺利用したサービス開発するのも親和性が高くて良い
-フルスタックフレームワークなのでフロントからバックエンドまでDjangoだけで出来る
- まー、社内システムならともかく外部に出すならフロントは別で作るけどね、それでもデモ版を素早くリリース出来るのは良い
-学習コストが低い
- フレームワークの構造が単純で理解しやすく、独自の書き方みたいなものは比較的少ないので開発参加への敷居が低い
-保守と運用が楽
- 開発コストと学習コストが低いので
-コミュニティ情報が豊富
- 基本英語にはなるけどコミュニティの規模が大きくて活発なので情報収集に困る事は無い、ググれば解決の安心感
+管理画面が標準装備、しかも自動生成  
+ モデルを作成すると自動的に管理画面に追加される  
+ CSVのインポート/エクスポート機能や検索入力でオートコンプリートなどのユーザカスタムも自由度が高い  
+ユーザ認証機能が標準装備なのでセキュリティが高い  
+ ユーザカスタムも可能、OAuth2のカスタムを入れてgoogle辺りと連携とかも簡単  
+ グループの概念も標準で装備してるので運用が楽  
+ URL単位でアクセス制御もできるし、管理画面ではモデル単位で参照/追加/変更/削除の制御も可能  
+Ptythonの超豊富なライブラリを利用できる  
+ みんなで巨人の肩に乗ろう！他の言語にあってPythonに無いライブラリとか存在しないと思うよ  
+ AIって言えばPythonだよね！ってところもあるし、この辺利用したサービス開発するのも親和性が高くて良い  
+フルスタックフレームワークなのでフロントからバックエンドまでDjangoだけで出来る  
+ まー、社内システムならともかく外部に出すならフロントは別で作るけどね、それでもデモ版を素早くリリース出来るのは良い  
+学習コストが低い  
+ フレームワークの構造が単純で理解しやすく、独自の書き方みたいなものは比較的少ないので開発参加への敷居が低い  
+保守と運用が楽  
+ 開発コストと学習コストが低いので  
+コミュニティ情報が豊富  
+ 基本英語にはなるけどコミュニティの規模が大きくて活発なので情報収集に困る事は無い、ググれば解決の安心感  
 
-Ninjaは?
-OpenAPIが標準装備、モチロン自動生成
+Ninjaは?  
+OpenAPIが標準装備、モチロン自動生成  
 
 
 # pythonの仮想環境を作成
@@ -27,6 +27,7 @@ OpenAPIが標準装備、モチロン自動生成
 まずはPythonの開発環境を構築して行くよ
 
 ## 作業ディレクトリ内で早速仮想環境
+```
 zagan@LarkBoxX:~/development/juke_box$ python3.10 -m venv venv3.10
 The virtual environment was not created successfully because ensurepip is not
 available.  On Debian/Ubuntu systems, you need to install the python3-venv
@@ -38,9 +39,11 @@ You may need to use sudo with that command.  After installing the python3-venv
 package, recreate your virtual environment.
 
 Failing command: /home/zagan/development/juke_box/venv3.10/bin/python3.10
+```
 
 ## なんか怒られたのでvenvを別途入れる
 ## pythonインストールすると標準で入ってる場合が多いんだけどね
+```
 zagan@LarkBoxX:~/development/juke_box$ sudo apt install python3.10-venv
 [sudo] password for zagan: 
 Reading package lists... Done
@@ -81,28 +84,38 @@ Setting up python3-pip-whl (22.0.2+dfsg-1ubuntu0.4) ...
 Setting up python3-lib2to3 (3.10.8-1~22.04) ...
 Setting up python3-distutils (3.10.8-1~22.04) ...
 Setting up python3.10-venv (3.10.12-1~22.04.2) ...
+```
 
 ## さ、気を取り直してもう一回
+```
 zagan@LarkBoxX:~/development/juke_box$ python3.10 -m venv venv3.10
+```
 
 ## 出来たね？
+```
 zagan@LarkBoxX:~/development/juke_box$ ls
 venv3.10
+```
 
 ## 早速仮想環境に切り替えてみよう
+```
 zagan@LarkBoxX:~/development/juke_box$ source venv3.10/bin/activate
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ 
+```
 
 ## 仮想環境から抜ける
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ deactivate 
 zagan@LarkBoxX:~/development/juke_box$ 
+```
 
 # django-ninjaの開発環境構築
 
-さて、次は早速Django-ninjaの準備だ
-まずはpipというpythonのパッケージ管理システムからdjango-ninjaをインストールするよ
+さて、次は早速Django-ninjaの準備だ  
+まずはpipというpythonのパッケージ管理システムからdjango-ninjaをインストールするよ  
 
 ## pip経由でdjango-ninja
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ pip install django-ninja
 Collecting django-ninja
   Downloading django_ninja-1.0.1-py3-none-any.whl (2.4 MB)
@@ -127,21 +140,24 @@ Collecting pydantic-core==2.14.5
      ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 27.4 MB/s eta 0:00:00
 Installing collected packages: typing-extensions, sqlparse, annotated-types, pydantic-core, asgiref, pydantic, Django, django-ninja
 Successfully installed Django-4.2.7 annotated-types-0.6.0 asgiref-3.7.2 django-ninja-1.0.1 pydantic-2.5.2 pydantic-core-2.14.5 sqlparse-0.4.4 typing-extensions-4.8.0
+```
 
 ## django-ninjaのフレームワークを使ってプロジェクトを作成する
 ## 現在いるディレクトリ直下に作成したいので最後のドットを忘れずに！
-
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ django-admin startproject juke_box .
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ ls
 juke_box  manage.py  venv3.10
+```
 
 
 # サービスを起動して見る
 
-プロジェクトを作成したらまずやって見ることは？
-そう！アクセスして見たいよね！早速やってみよう！
+プロジェクトを作成したらまずやって見ることは？  
+そう！アクセスして見たいよね！早速やってみよう！  
 
 ## サービスを起動する
+'''
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ ./manage.py runserver
 Watching for file changes with StatReloader
 Performing system checks...
@@ -154,39 +170,41 @@ November 26, 2023 - 13:52:02
 Django version 4.2.7, using settings 'juke_box.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
+'''
 
-なんか怒られてるね？気にせずブラウザでアクセスして見よう
-http://127.0.0.1:8000/ だね
-私の場合はリモートの開発マシンの 192.168.1.5 でポート変換して実行しているので http://192.168.1.5/ になる
-[01]
-エラー画面が表示されたね？
-これはDjangoが表示しているエラー画面だ、これから頻繁に見る事になる
-ALLOWED_HOSTS に 192.168.1.5が無いぞって言われてるね、分かりやすい！
+なんか怒られてるね？気にせずブラウザでアクセスして見よう  
+http://127.0.0.1:8000/ だね  
+私の場合はリモートの開発マシンの 192.168.1.5 でポート変換して実行しているので http://192.168.1.5/ になる  
+[01]  
+エラー画面が表示されたね？  
+これはDjangoが表示しているエラー画面だ、これから頻繁に見る事になる  
+ALLOWED_HOSTS に 192.168.1.5が無いぞって言われてるね、分かりやすい！  
 
-設定ファイルを変更してやろう
-ALLOWED_HOSTS に 192.168.1.5 を追加してやる
-$ vi juke_box/settings.py
+設定ファイルを変更してやろう  
+ALLOWED_HOSTS に 192.168.1.5 を追加してやる  
+$ vi juke_box/settings.py  
 ```
 ALLOWED_HOSTS = ['192.168.1.5']
 
 ```
 
-さぁもう一度ブラウザで開いて見て
-[02]
-うん！最高の気分だね！
+さぁもう一度ブラウザで開いて見て  
+[02]  
+うん！最高の気分だね！  
 
 # DBセットアップ
 
-でもまだもう一つやらなきゃいけない事がある
-サービスを起動した時に何か怒られていたね？
+でもまだもう一つやらなきゃいけない事がある  
+サービスを起動した時に何か怒られていたね？  
 ```
 You have 18 unapplied migration(s). Your project may not work properly until you apply the migrations for app(s): admin, auth, contenttypes, sessions.
 Run 'python manage.py migrate' to apply them.
 ```
-そう、ここだ、マイグレーションを実行しろって書かれてる
-要するにDBに予め入れなきゃいけないデータがあるので実行する必要があるって事だ
-
-今回は面倒なのでDockerでPostgreSQLを入れるよ、MySQLなんかクソさ！(個人の見解です)
+そう、ここだ、マイグレーションを実行しろって書かれてる  
+要するにDBに予め入れなきゃいけないデータがあるので実行する必要があるって事だ  
+  
+今回は面倒なのでDockerでPostgreSQLを入れるよ、MySQLなんかクソさ！(個人の見解です)  
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ docker run -d --name juke_box_postgres -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres:14.10
 Unable to find image 'postgres:14.10' locally
 14.10: Pulling from library/postgres
@@ -206,6 +224,7 @@ d5bc21a2dde7: Pull complete
 Digest: sha256:2cc52135f21efd56a27258fedbbc34c2699b4e28454dc0a7609a1d8adab94f76
 Status: Downloaded newer image for postgres:14.10
 3dad2ef14f2e0c37245f7a53b92ae01c855c06dbedb36176c7644e0628d68e4c
+```
 
 dockerを確認して見よう
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ docker ps
