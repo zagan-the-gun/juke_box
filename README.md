@@ -42,7 +42,7 @@ Failing command: /home/zagan/development/juke_box/venv3.10/bin/python3.10
 ```
 
 ## なんか怒られたのでvenvを別途入れる
-## pythonインストールすると標準で入ってる場合が多いんだけどね
+pythonインストールすると標準で入ってる場合が多いんだけどね
 ```
 zagan@LarkBoxX:~/development/juke_box$ sudo apt install python3.10-venv
 [sudo] password for zagan: 
@@ -143,7 +143,7 @@ Successfully installed Django-4.2.7 annotated-types-0.6.0 asgiref-3.7.2 django-n
 ```
 
 ## django-ninjaのフレームワークを使ってプロジェクトを作成する
-## 現在いるディレクトリ直下に作成したいので最後のドットを忘れずに！
+現在いるディレクトリ直下に作成したいので最後のドットを忘れずに！
 ```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ django-admin startproject juke_box .
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ ls
@@ -157,7 +157,7 @@ juke_box  manage.py  venv3.10
 そう！アクセスして見たいよね！早速やってみよう！  
 
 ## サービスを起動する
-'''
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ ./manage.py runserver
 Watching for file changes with StatReloader
 Performing system checks...
@@ -170,7 +170,7 @@ November 26, 2023 - 13:52:02
 Django version 4.2.7, using settings 'juke_box.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
-'''
+```
 
 なんか怒られてるね？気にせずブラウザでアクセスして見よう  
 http://127.0.0.1:8000/ だね  
@@ -226,12 +226,15 @@ Status: Downloaded newer image for postgres:14.10
 3dad2ef14f2e0c37245f7a53b92ae01c855c06dbedb36176c7644e0628d68e4c
 ```
 
-dockerを確認して見よう
+dockerを確認して見よう  
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ docker ps
 CONTAINER ID   IMAGE                COMMAND                  CREATED          STATUS                 PORTS                    NAMES
 3dad2ef14f2e   postgres:14.10       "docker-entrypoint.s…"   20 seconds ago   Up 18 seconds          0.0.0.0:5432->5432/tcp   juke_box_postgres
+```
 
 postgresのクライアントをインストールしよう
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ sudo apt install postgresql-client-common
 Reading package lists... Done
 Building dependency tree... Done
@@ -278,8 +281,10 @@ Setting up libpq5:amd64 (14.9-0ubuntu0.22.04.1) ...
 Setting up postgresql-client-14 (14.9-0ubuntu0.22.04.1) ...
 update-alternatives: using /usr/share/postgresql/14/man/man1/psql.1.gz to provide /usr/share/man/man1/psql.1.gz (psql.1.gz) in auto mode
 Processing triggers for libc-bin (2.35-0ubuntu3.4) ...
+```
 
 アクセスして見よう
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ psql -h localhost -p 5432 -U postgres
 Password for user postgres: 
 psql (14.9 (Ubuntu 14.9-0ubuntu0.22.04.1), server 14.10 (Debian 14.10-1.pgdg120+1))
@@ -301,10 +306,11 @@ postgres=# \l
 (4 rows)
 
 postgres=# \q
+```
 
-大丈夫そうだね！
-
-設定ファイルを書き換えよう
+大丈夫そうだね！  
+  
+設定ファイルを書き換えよう  
 $ vi juke_box/settings.py
 ```
 DATABASES = {
@@ -320,6 +326,7 @@ DATABASES = {
 ```
 
 djangoがpythonにアクセスするためのライブラリ
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ pip install psycopg2-binary
 Collecting psycopg2-binary
   Downloading psycopg2_binary-2.9.9-cp310-cp310-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.0 MB)
@@ -354,9 +361,11 @@ Unpacking libpq-dev (14.9-0ubuntu0.22.04.1) ...
 Setting up libssl-dev:amd64 (3.0.2-0ubuntu1.12) ...
 Setting up libpq-dev (14.9-0ubuntu0.22.04.1) ...
 Processing triggers for man-db (2.10.2-1) ...
+```
 
 さぁマイグレーションして見よう
 
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ ./manage.py migrate
 Operations to perform:
   Apply all migrations: admin, auth, contenttypes, sessions
@@ -379,8 +388,10 @@ Running migrations:
   Applying auth.0011_update_proxy_permissions... OK
   Applying auth.0012_alter_user_first_name_max_length... OK
   Applying sessions.0001_initial... OK
+```
 
 そして起動
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ ./manage.py runserver
 Watching for file changes with StatReloader
 Performing system checks...
@@ -390,25 +401,28 @@ November 26, 2023 - 15:29:16
 Django version 4.2.7, using settings 'juke_box.settings'
 Starting development server at http://127.0.0.1:8000/
 Quit the server with CONTROL-C.
+```
 
-怒られなくなったね
-http://127.0.0.1/admin/ にアクセスして見よう
-[03]
-そう！管理画面だ！しかしユーザが存在しないのでコマンドラインで作成する必要がある
+怒られなくなったね  
+http://127.0.0.1/admin/ にアクセスして見よう  
+[03]  
+そう！管理画面だ！しかしユーザが存在しないのでコマンドラインで作成する必要がある  
 
+```
 (venv3.10) zagan@LarkBoxX:~/development/juke_box$ ./manage.py createsuperuser
 Username (leave blank to use 'zagan'): 
 Email address: zagan.the.gun@gmail.com
 Password: 
 Password (again): 
 Superuser created successfully.
+```
 
-ここで作成したユーザIDとパスワードを使って管理画面にアクセスして見よう
-[04]
-おめでとう！これで君の開発環境はほぼ全て整った！
-
-この管理画面ではプロジェクトで作成したテーブルを直接 追加/変更/削除 する事が出来る
-他にも直接このページの各項目をカスタマイズする事も出来るよ
+ここで作成したユーザIDとパスワードを使って管理画面にアクセスして見よう  
+[04]  
+おめでとう！これで君の開発環境はほぼ全て整った！  
+  
+この管理画面ではプロジェクトで作成したテーブルを直接 追加/変更/削除 する事が出来る  
+他にも直接このページの各項目をカスタマイズする事も出来るよ  
 
 # サービス作成
 
@@ -435,21 +449,24 @@ urlpatterns = [
 ]
 ```
 編集が終わったら早速ブラウザでアクセスして見よう
-http://192.168.1.5/api/add?a=1&b=2
-[05]
-やったぜ！
+http://192.168.1.5/api/add?a=1&b=2  
+[05]  
+やったぜ！  
 
 ## swagger確認
-DjangoNinjaはなんとSwaggerが標準装備、モチロン自動生成だ
-http://192.168.1.5/api/docs/ にアクセスして見よう
-[06]
-APIを作成した場合はここで直接テストも出来るので開発が非常に捗る！
-[07]
+DjangoNinjaはなんとSwaggerが標準装備、モチロン自動生成だ  
+http://192.168.1.5/api/docs/ にアクセスして見よう  
+[06]  
+APIを作成した場合はここで直接テストも出来るので開発が非常に捗る！  
+[07]  
 
 ## アプリケーションの作成
+```
 $ ./manage.py startapp apis
+```
 
 ## モデル作成
+```
 $ vi apis/models.py
 $ ./manage.py makemigrations
 Migrations for 'apis':
@@ -460,6 +477,7 @@ Operations to perform:
   Apply all migrations: admin, apis, auth, contenttypes, sessions
 Running migrations:
   Applying apis.0001_initial... OK
+```
 
 ## スキーマ作成
 
